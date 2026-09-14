@@ -31,7 +31,8 @@ import numpy as np
 ## Dataset Details
 The database is built from underlying flat files including `customers.csv` and `geolocation.csv`. The relational schema is structured around the following core tables:
 *   **`customers`:** Stores geographic distributions including customer cities and states.
-*   **`orders` & `order_items`:** Tracks order placement timestamps, itemized product connections, and associated pricing.
+*   **`orders`:** Tracks order placement timestamps and overall order statuses.
+*   **`order_items`:** Links specific products to orders and tracks itemized pricing.
 *   **`payments`:** Logs transaction values and installment plan selections.
 *   **`products`:** Classifies distinct product categories.
 *   **`sellers`:** Identifies individual merchants fulfilling the items.
