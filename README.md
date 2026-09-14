@@ -1,66 +1,49 @@
-# E-Commerce Data Pipeline & Analytics (Python & SQL)
+# E-Commerce Data Analytics Portfolio Project
 
-An end-to-end local data engineering and analytics project. Raw e-commerce data (Olist dataset) is cleaned and structured using Python, ingested into **Microsoft SQL Server**, and analyzed using advanced **T-SQL queries** to extract key business metrics.
+## Overview
+This repository contains a comprehensive data analytics portfolio project that explores an e-commerce database to extract actionable business intelligence regarding customer behavior, sales performance, and logistical operations. By utilizing a hybrid environment, the analysis seamlessly integrates Python scripts with SQL Server to execute raw queries, model data, and generate advanced statistical visualizations. 
 
----
+## Environment & Tech Stack
+*   **Environment:** Jupyter Notebook + SSMS (SQL Server Management Studio)
+*   **Programming Languages:** Python 3.x, SQL
+*   **Database Management:** SQL Server
 
-## 📁 Repository Structure
+## Dependencies & Library Setup
+The following Python modules are required to manage data structures, establish high-performance database connections, execute formatted SQL commands, and build visual dashboards:
 
-```text
-├── data/
-│   ├── customers.csv
-│   ├── geolocation.zip       # Unzip locally before running ingestion script
-│   ├── order_items.csv
-│   ├── orders.csv
-│   ├── payments.csv
-│   ├── products.csv
-│   └── sellers.csv
-├── ecommerce_analysis_queries.sql
-├── Python_SQL_Ecommerce_Analysis.ipynb
-├── .gitignore
-├── LICENSE
-└── README.md
+```python
+# Import pandas for data manipulation.
+import pandas as pd
+# Create_engine from SQLAlchemy to establish a high-performance database connection.
+from sqlalchemy import create_engine
+# Import the Path class from pathlib for clean, cross-platform, object-oriented file path operations.
+from pathlib import Path
+# Import text construct from SQLAlchemy to execute safely formatted raw SQL queries inside engine connections.
+from sqlalchemy import text
+# Import pyplot module from matplotlib for generating data visualizations.
+import matplotlib.pyplot as plt
+# Import seaborn library for advanced statistical data visualization.
+import seaborn as sns
+# Import numpy library for numerical operations.
+import numpy as np
 ```
 
----
+## Dataset Details
+The database is built from underlying flat files including `customers.csv` and `geolocation.csv`. The relational schema is structured around the following core tables:
+*   **`customers`:** Stores geographic distributions including customer cities and states.
+*   **`orders` & `order_items`:** Tracks order placement timestamps, itemized product connections, and associated pricing.
+*   **`payments`:** Logs transaction values and installment plan selections.
+*   **`products`:** Classifies distinct product categories.
+*   **`sellers`:** Identifies individual merchants fulfilling the items.
 
-## 🛠️ Tech Stack & Tools
+## Key Business Analytics
+*   **Revenue Optimization:** Calculated total sales distributed by product category and ranked the highest-grossing sellers.
+*   **Customer Behavior:** Mapped order volume across geographic states, identified the top three highest-spending customers annually, and calculated the percentage of orders paid in installments.
+*   **Time-Series & Growth:** Tracked seasonal order volume by month, visualized cumulative monthly sales, and measured Year-over-Year (YoY) revenue growth percentages.
+*   **Retention Metrics:** Developed a retention rate calculation defining loyal customers as those making secondary purchases within a 6-month window of their initial transaction.
+*   **Statistical Analysis:** Derived the Pearson Correlation Coefficient to map the relationship between product pricing and overall purchase frequency.
 
-* **Programming:** Python 3.x (Pandas, SQLAlchemy, PyODBC)
-* **Database Management:** Microsoft SQL Server, SQL Server Management Studio (SSMS)
-* **Querying:** T-SQL (CTE, Window Functions, Aggregations)
-* **Environment:** Jupyter Notebook
-
----
-
-## 🚀 Pipeline Workflow
-
-1. **Extraction & Cleaning:** `Python_SQL_Ecommerce_Analysis.ipynb` loads raw CSV files, handles missing values, validates data types, and prepares relational schemas.
-2. **Database Ingestion:** Automated ingestion pipeline writes cleaned DataFrames directly into local **MS SQL Server** staging/production tables via SQLAlchemy.
-3. **Business Analytics:** `ecommerce_analysis_queries.sql` executes SQL analytics on customer retention, revenue trends, logistics performance, and seller metrics.
-
----
-
-## ⚙️ How to Run Locally
-
-1. **Clone the Repository:**
-   ```bash
-   git clone [https://github.com/Hassan-Farahat/Ecommerce-Data-Pipeline-Python-SQL-Analytics.git](https://github.com/Hassan-Farahat/Ecommerce-Data-Pipeline-Python-SQL-Analytics.git)
-   cd Ecommerce-Data-Pipeline-Python-SQL-Analytics
-   ```
-
-2. **Extract Geolocation Data:**
-   * Extract `data/geolocation.zip` into the `data/` directory so that `data/geolocation.csv` is present.
-
-3. **Configure Database Connection:**
-   * Open `Python_SQL_Ecommerce_Analysis.ipynb`.
-   * Update the MS SQL Server connection string (`SERVER`, `DATABASE`, `DRIVER`) to match your local SQL Server instance.
-
-4. **Run Pipeline & SQL Analysis:**
-   * Execute all cells in `Python_SQL_Ecommerce_Analysis.ipynb` to populate your SQL Server database.
-   * Open `ecommerce_analysis_queries.sql` in SSMS to execute analytical queries.
-
----
-
-## 📄 License
-Distributed under the MIT License. See `LICENSE` for details.
+## Technical SQL Implementations
+*   **Advanced Window Functions:** Leveraged `LAG()` for comparative growth tracking, `DENSE_RANK()` for top-spender tiering, and `AVG() OVER (PARTITION BY...)` to generate moving averages of customer order histories.
+*   **Common Table Expressions (CTEs):** Structured complex, multi-stage data aggregations prior to executing statistical math and demographic grouping.
+*   **Performance Optimization:** Resolved `VARCHAR(MAX)` indexing limitations by strategically resizing key reference columns (such as `order_id`) to `VARCHAR(50)`, facilitating the successful implementation of non-clustered performance indexes to dramatically reduce query execution time.
