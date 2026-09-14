@@ -5,7 +5,7 @@ This repository contains a comprehensive data analytics portfolio project that e
 
 ## Environment & Tech Stack
 *   **Environment:** Jupyter Notebook + SSMS (SQL Server Management Studio)
-*   **Programming Languages:** Python 3.x, SQL
+*   **Languages:** Python, SQL
 *   **Database Management:** SQL Server
 
 ## Dependencies & Library Setup
